@@ -1,5 +1,5 @@
 // set var cache
-let cacheVersion = "version-1";
+let cacheVersion = "review-cache-v1";
 
 //array with all files to cache
 let cacheFiles = [
@@ -42,7 +42,7 @@ self.addEventListener('activate', function(event){
 		caches.keys().then(function(cacheNames) {
 			return Promise.all(
 			cacheNames.filter(function(cacheName) {
-				return cacheName.startsWith('version-')&&cacheName != cacheVersion;
+				return cacheName.startsWith('review-')&&cacheName != cacheVersion;
 			}).map(function(cacheName) {
 				return cache.delete(cacheName);
 		})
@@ -59,7 +59,8 @@ self.addEventListener('activate', function(event){
 self.addEventListener('fetch', function(event) {
     console.log('FETCH service worker');
 	event.respondWith(
-		caches.match(event.request).then(function(response) {
+        caches.match(event.request)
+        .then(function(response) {
 			return response || fetch(event.request);
 		})
 	);
