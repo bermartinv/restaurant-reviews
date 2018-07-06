@@ -22,19 +22,33 @@ let cacheFiles = [
     "./js/main.js",
     "./js/restaurant_info.js"
 ];
-/*
+
 //Install service worker
 self.addEventListener('install', function(event){
     console.log("Our Service Worker is installed");
         event.waitUntil(
             //open cache
-            caches.open(cacheVersion).then(function(cache){
+            caches.open(cacheVersion).
+            then(function(cache){
                 console.log("Our files are cached in service worker");
                     return cache.addAll(cacheFiles);//add all files
+            }).catch(function(error){
+                console.log("An error: ", error);
             })
         )
 })
+
 /*
+self.addEventListener('install', (event) => {
+    // Perform install steps
+    event.waitUntil(
+      caches.open(cacheVersion)
+      .then((cache) => {
+        console.log('Opened cache');
+        return cache.addAll(cacheFiles);
+      }).catch((error) => console.log('Caching error: ', error))
+    );
+  });*/
 // Activate service worker
 self.addEventListener('activate', function(event){
     console.log('Activate service worker cache');
@@ -53,8 +67,8 @@ self.addEventListener('activate', function(event){
     })
 );
 });
-*/
-/*
+
+
 // FETCH service worker
 self.addEventListener('fetch', function(event) {
     console.log('FETCH service worker');
@@ -65,19 +79,9 @@ self.addEventListener('fetch', function(event) {
 		})
 	);
 });
-*/
 
-self.addEventListener('install', (event) => {
-    // Perform install steps
-    event.waitUntil(
-      caches.open(cacheVersion)
-      .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(cacheFiles);
-      }).catch((error) => console.log('Caching error: ', error))
-    );
-  });
-  
+
+/*  
   self.addEventListener('fetch', (event) => {
     // console.log(event.request.url);
     event.respondWith(
@@ -85,4 +89,4 @@ self.addEventListener('install', (event) => {
         return response || fetch(event.request);
       })
     );
-  });
+  });*/
