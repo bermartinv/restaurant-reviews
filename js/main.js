@@ -90,7 +90,7 @@ initMap = () => {
 }*/
 /**
  * Initialize Google Maps
-*//*
+*/
  window.initMap = () => {
   let loc = {
     lat: 40.722216,
@@ -102,7 +102,7 @@ initMap = () => {
     scrollwheel: false
   });
   updateRestaurants();
-}*/
+}
 
 /**
  * Update page and map for current restaurants.
@@ -186,33 +186,17 @@ createRestaurantHTML = (restaurant) => {
   return li
 }
 
+
 /**
  * Add markers for current restaurants to the map.
  */
 addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map
-    const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.newMap);
-    marker.on("click", onClick);
-    function onClick() {
-      window.location.href = marker.options.url;
-    }
-    self.markers.push(marker);
-  });
-
-} 
-
-/**
- * Check Service worker in navigator
- */
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register("/sw.js").then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }, function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
+    const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
+    google.maps.event.addListener(marker, 'click', () => {
+      window.location.href = marker.url
     });
+    self.markers.push(marker);
   });
 }
