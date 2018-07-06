@@ -8,9 +8,22 @@ var markers = []
  * Fetch neighborhoods and cuisines as soon as the page is loaded.
  */
 document.addEventListener('DOMContentLoaded', (event) => {
-  //initMap(); // added 
+  /**
+   * Adding Service Worker as per: https://developers.google.com/web/fundamentals/codelabs/offline/
+   */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/mws-restaurant-stage-1/sw.js').then((registration) => {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, (err) => {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }
+
   fetchNeighborhoods();
   fetchCuisines();
+
 });
 
 /**
