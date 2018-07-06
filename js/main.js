@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
    * Adding Service Worker as per: https://developers.google.com/web/fundamentals/codelabs/offline/
    */
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/restaurant-review/sw.js').then((registration) => {
+    navigator.serviceWorker
+      .register('/restaurant-reviews/sw.js')
+      .then((registration) => {
       // Registration was successful
       console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }, (err) => {
@@ -150,9 +152,8 @@ resetRestaurants = (restaurants) => {
   ul.innerHTML = '';
 
   // Remove all map markers
-  if (self.markers) {
-    self.markers.forEach(marker => marker.remove());
-  }
+  self.markers.forEach(marker => marker.setMap(null));
+  
   self.markers = [];
   self.restaurants = restaurants;
 }

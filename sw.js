@@ -22,7 +22,7 @@ let cacheFiles = [
     "./js/main.js",
     "./js/restaurant_info.js"
 ];
-
+/*
 //Install service worker
 self.addEventListener('install', function(event){
     console.log("Our Service Worker is installed");
@@ -34,7 +34,7 @@ self.addEventListener('install', function(event){
             })
         )
 })
-
+/*
 // Activate service worker
 self.addEventListener('activate', function(event){
     console.log('Activate service worker cache');
@@ -53,8 +53,8 @@ self.addEventListener('activate', function(event){
     })
 );
 });
-
-
+*/
+/*
 // FETCH service worker
 self.addEventListener('fetch', function(event) {
     console.log('FETCH service worker');
@@ -65,3 +65,24 @@ self.addEventListener('fetch', function(event) {
 		})
 	);
 });
+*/
+
+self.addEventListener('install', (event) => {
+    // Perform install steps
+    event.waitUntil(
+      caches.open(cacheVersion)
+      .then((cache) => {
+        console.log('Opened cache');
+        return cache.addAll(cacheFiles);
+      }).catch((error) => console.log('Caching error: ', error))
+    );
+  });
+  
+  self.addEventListener('fetch', (event) => {
+    // console.log(event.request.url);
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        return response || fetch(event.request);
+      })
+    );
+  });
