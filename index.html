@@ -30,18 +30,18 @@
 </head>
 
 <body>
-  <header>
-    <nav>
+  <header role="heading">
+    <nav role="navigation">
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
   </header>
 
-  <main id="maincontent">
+  <main id="maincontent" role="main">
     <section id="map-container">
       <div id="map"></div>
     </section>
     <section id="data-container">
-      <div class="filter-options">
+      <div class="filter-options" role="options">
         <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
@@ -61,7 +61,25 @@
   <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAi38gZph0YC3snhjpW8NJpLXfQLStKsC8&libraries=places&callback=initMap"></script>
-  
+  <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+  /**
+   * Adding Service Worker as per: https://developers.google.com/web/fundamentals/codelabs/offline/
+   */
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/restaurant-reviews/sw.js')
+      .then((registration) => {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, (err) => {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  }
+
+  });
+  </script>
 </body>
 
 </html>

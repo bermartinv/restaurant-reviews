@@ -33,6 +33,7 @@ https://jakearchibald.github.io/isserviceworkerready/
 https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API
 https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API/Using_Service_Workers
 https://developers.google.com/web/fundamentals/codelabs/offline/
+https://www.w3.org/TR/html-aria/#allowed-aria-roles-states-and-properties
 
 ### License
 Everybody can use this code. This was made to learn and develop JavaScript.

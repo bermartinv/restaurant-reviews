@@ -18,6 +18,7 @@ let cacheFiles = [
     "./img/8.jpg",
     "./img/9.jpg",
     "./img/10.jpg",
+    "./img/favicon.png",
     "./js/dbhelper.js",
     "./js/main.js",
     "./js/restaurant_info.js"
@@ -38,17 +39,6 @@ self.addEventListener('install', function(event){
         )
 })
 
-/*
-self.addEventListener('install', (event) => {
-    // Perform install steps
-    event.waitUntil(
-      caches.open(cacheVersion)
-      .then((cache) => {
-        console.log('Opened cache');
-        return cache.addAll(cacheFiles);
-      }).catch((error) => console.log('Caching error: ', error))
-    );
-  });*/
 // Activate service worker
 self.addEventListener('activate', function(event){
     console.log('Activate service worker cache');
@@ -80,13 +70,3 @@ self.addEventListener('fetch', function(event) {
 	);
 });
 
-
-/*  
-  self.addEventListener('fetch', (event) => {
-    // console.log(event.request.url);
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        return response || fetch(event.request);
-      })
-    );
-  });*/
