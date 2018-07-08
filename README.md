@@ -38,4 +38,4 @@ https://developers.google.com/web/fundamentals/codelabs/offline/
 Everybody can use this code. This was made to learn and develop JavaScript.
 
 ### How to execute it
-    https://bermartinv.github.io/restaurant-reviews/index.html
+https://bermartinv.github.io/restaurant-reviews/index.html
