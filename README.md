@@ -29,5 +29,7 @@ This repository uses [leafletjs](https://leafletjs.com/) with [Mapbox](https://w
 Most of the code in this project has been written to the ES6 JavaScript specification for compatibility with modern web browsers and future proofing JavaScript code. As much as possible, try to maintain use of ES6 in any additional JavaScript you write. 
 
 
-
+https://jakearchibald.github.io/isserviceworkerready/
+https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API
+https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API/Using_Service_Workers
 https://developers.google.com/web/fundamentals/codelabs/offline/
